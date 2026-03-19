@@ -1,29 +1,41 @@
-students = {
-    "Rahul": [85, 78, 92],
-    "Anjali": [90, 88, 95],
-    "Arjun": [70, 75, 80]
-}
+students = {}
 
-def calculate_grade(avg):
-    if avg >= 90:
-        return "A"
-    elif avg >= 75:
-        return "B"
-    else:
-        return "C"
+try:
+    n = int(input("Enter number of students: "))
+    
+    for i in range(n):
+        name = input("Enter student name: ")
+        marks = []
+        
+        for j in range(3):
+            mark = int(input(f"Enter mark {j+1}: "))
+            marks.append(mark)
+        
+        students[name] = marks
 
-top_student = ""
-highest_avg = 0
+    def calculate_grade(avg):
+        if avg >= 90:
+            return "A"
+        elif avg >= 75:
+            return "B"
+        else:
+            return "C"
 
-for name, marks in students.items():
-    total = sum(marks)
-    avg = total / len(marks)
-    grade = calculate_grade(avg)
+    top_student = ""
+    highest_avg = 0
 
-    print(f"{name} -> Total: {total}, Average: {avg:.2f}, Grade: {grade}")
+    for name, marks in students.items():
+        total = sum(marks)
+        avg = total / len(marks)
+        grade = calculate_grade(avg)
 
-    if avg > highest_avg:
-        highest_avg = avg
-        top_student = name
+        print(f"{name} -> Total: {total}, Average: {avg:.2f}, Grade: {grade}")
 
-print(f"\nTop Student: {top_student}")
+        if avg > highest_avg:
+            highest_avg = avg
+            top_student = name
+
+    print(f"\nTop Student: {top_student}")
+
+except ValueError:
+    print("Please enter valid numbers only!")
